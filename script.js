@@ -6,38 +6,35 @@ const yesButton = document.querySelector(".btn--yes");
 const noButton = document.querySelector(".btn--no");
 const catImg = document.querySelector(".cat-img");
 
-// TUS IMAGENES (Del link 1 al 6)
-// Se irán mostrando en orden cuando el botón se escape
+// TUS IMÁGENES (Links 1 al 6 para la secuencia del NO)
 const images = [
-  "https://imgur.com/a/GujcD78#TL3lwbV",
-  "https://imgur.com/a/GujcD78#iUgN9E3",
-  "https://imgur.com/a/GujcD78#mN3OkTV",
-  "https://imgur.com/a/GujcD78#aZ3zWBk",
-  "https://imgur.com/a/GujcD78#VukKvyM",
-  "https://imgur.com/a/GujcD78#BSkVGLM"
+  "https://i.imgur.com/TL3lwbV.jpeg",
+  "https://i.imgur.com/iUgN9E3.jpeg",
+  "https://i.imgur.com/mN3OkTV.jpeg",
+  "https://i.imgur.com/aZ3zWBk.jpeg",
+  "https://i.imgur.com/VukKvyM.jpeg",
+  "https://i.imgur.com/BSkVGLM.jpeg"
 ];
 
-// TU IMAGEN FINAL (Link 7)
-// Esta aparece solo cuando logre darle al SÍ
-const finalImage = "https://imgur.com/a/GujcD78#TrvihNT";
+// TU IMAGEN FINAL (Link 7 - Cuando dice que SÍ)
+const finalImage = "https://i.imgur.com/TrvihNT.jpeg";
 
 let noCount = 0;
 
 yesButton.addEventListener("click", handleYesClick);
 
-// --- LÓGICA DEL BOTÓN ESCAPISTA ---
+// LÓGICA DEL BOTÓN ESCAPISTA (PC y CELULAR)
 
-// 1. PC: Mouse pasa por encima
+// 1. Mouse pasa por encima (PC)
 noButton.addEventListener("mouseover", moverBoton);
 
-// 2. CELULAR: Dedo toca la pantalla (touchstart)
-// Usamos touchstart porque es más rápido que el click en móviles
+// 2. Tocar la pantalla (Celular)
 noButton.addEventListener("touchstart", function (e) {
-  e.preventDefault(); 
+  e.preventDefault(); // Evita que se haga click real
   moverBoton();
 });
 
-// 3. Click (por seguridad)
+// 3. Click (Seguridad extra)
 noButton.addEventListener("click", function (e) {
   e.preventDefault();
   moverBoton();
@@ -46,39 +43,39 @@ noButton.addEventListener("click", function (e) {
 function moverBoton() {
   noCount++;
   
-  // A. Cambiar imagen
-  // Usa el operador % para volver a empezar si se acaban las fotos
+  // A. Cambiar imagen (bucle infinito)
   const imageIndex = noCount % images.length;
   catImg.src = images[imageIndex];
   
-  // B. Cambiar texto del botón
+  // B. Cambiar texto
   updateNoButtonText();
   
-  // C. Mover el botón a una posición aleatoria
+  // C. Mover botón (Cálculo matemático para que no se salga de la pantalla)
   const windowWidth = window.innerWidth;
   const windowHeight = window.innerHeight;
   const btnWidth = noButton.offsetWidth;
   const btnHeight = noButton.offsetHeight;
 
-  // Calculamos límites para que NO se salga de la pantalla
-  // Restamos el tamaño del botón y un margen de 20px
+  // Calculamos el espacio disponible restando el tamaño del botón y un margen (20px)
   const maxLeft = windowWidth - btnWidth - 20; 
   const maxTop = windowHeight - btnHeight - 20;
 
+  // Generamos posición aleatoria
   const randomX = Math.random() * maxLeft;
   const randomY = Math.random() * maxTop;
 
+  // Aplicamos la nueva posición
   noButton.style.position = "absolute";
-  // Math.max asegura que no se vaya muy al borde izquierdo/superior
-  noButton.style.left = `${Math.max(10, randomX)}px`;
+  noButton.style.left = `${Math.max(10, randomX)}px`; // Mínimo 10px del borde
   noButton.style.top = `${Math.max(10, randomY)}px`;
 }
 
 function handleYesClick() {
+  // Mensaje final
   titleElement.innerHTML = "¡Siiuuu! Prometo que esta vez sale de 10 ❤️";
   buttonsContainer.classList.add("hidden");
   
-  // Muestra la foto final
+  // Mostrar la foto final (Link 7)
   catImg.src = finalImage;
 }
 

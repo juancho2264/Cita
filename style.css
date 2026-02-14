@@ -9,9 +9,9 @@ html {
 }
 
 body {
-  background-color: #fff0f6; /* Color de fondo rosa suave */
+  background-color: #fff0f6; /* Rosa suave */
   font-family: "Protest Riot", sans-serif;
-  overflow: hidden; /* IMPORTANTE: Evita que la pantalla se agrande cuando el botón salta */
+  overflow: hidden; /* IMPORTANTE: Evita scroll cuando el botón se mueve */
   height: 100vh;
   width: 100vw;
   position: relative;
@@ -28,12 +28,12 @@ body {
 }
 
 .cat-img {
-  width: 90%; /* Ocupa buen espacio en celular */
-  max-width: 350px; /* No se hace gigante en PC */
+  width: 90%;
+  max-width: 350px;
   height: auto;
   object-fit: cover;
   margin-bottom: 2rem;
-  border-radius: 15px; /* Bordes redondeados para que quede lindo */
+  border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
@@ -71,26 +71,28 @@ body {
   transition: transform 0.2s ease;
   box-shadow: 0 4px 6px rgba(0,0,0,0.2);
   
-  /* Evita que se seleccione el texto al tocar rápido en celular */
+  /* Evita selección de texto en celular */
   user-select: none; 
   -webkit-tap-highlight-color: transparent;
 }
 
 .btn--yes {
   background-color: #40c057;
+  z-index: 50;
 }
 
 .btn--no {
   background-color: #f03e3e;
   position: relative; 
-  transition: top 0.3s ease, left 0.3s ease; /* Hace que el movimiento se vea fluido */
+  transition: top 0.3s ease, left 0.3s ease; /* Movimiento fluido */
+  z-index: 100; /* Asegura que siempre esté visible */
 }
 
 .hidden {
   display: none;
 }
 
-/* Ajuste para pantallas grandes (PC) */
+/* Ajustes para PC */
 @media (min-width: 768px) {
   .title { font-size: 4rem; }
   .btn { font-size: 2.4rem; padding: 2rem 4rem; }

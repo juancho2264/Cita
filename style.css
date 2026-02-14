@@ -5,15 +5,16 @@
 }
 
 html {
-  font-size: 62.5%; /* Truco para que 1rem = 10px aprox */
+  font-size: 62.5%;
 }
 
 body {
-  background-color: #fff0f6;
+  background-color: #fff0f6; /* Color rosa suave */
   font-family: "Protest Riot", sans-serif;
-  overflow: hidden; /* IMPORTANTE: Bloquea el scroll para que el botón no agrande la página */
+  overflow: hidden; /* IMPORTANTE: Evita scroll cuando el botón se mueve */
   height: 100vh;
   width: 100vw;
+  position: relative;
 }
 
 .container {
@@ -24,27 +25,29 @@ body {
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  position: relative;
 }
 
 .cat-img {
-  width: 80%; /* Ocupa el 80% del ancho en celulares */
-  max-width: 350px; /* Pero en PC no pasa de 350px */
+  width: 85%;
+  max-width: 350px; /* Tamaño máximo en PC */
   height: auto;
   object-fit: cover;
   margin-bottom: 2rem;
-  border-radius: 10px; /* Un detallito estético */
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 .text-box {
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   text-align: center;
+  z-index: 5;
 }
 
 .title {
-  font-size: 3rem;
+  font-size: 2.8rem;
   color: #f53699;
-  line-height: 1.2;
+  line-height: 1.3;
+  text-shadow: 1px 1px 0px rgba(255,255,255,0.5);
 }
 
 .buttons {
@@ -52,49 +55,44 @@ body {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 1.5rem;
   width: 100%;
-  min-height: 60px; /* Reserva espacio para que no salte todo cuando el NO se vaya */
+  min-height: 70px; /* Reserva espacio */
+  position: relative;
+  z-index: 10;
 }
 
 .btn {
   padding: 1.5rem 3rem;
   border: none;
-  border-radius: 50px; /* Botones más redondos y modernos */
+  border-radius: 50px;
   color: white;
   font-size: 2rem;
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.2s ease;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
   
-  /* Evita selección de texto en móviles */
   user-select: none; 
   -webkit-tap-highlight-color: transparent;
 }
 
 .btn--yes {
   background-color: #40c057;
-  z-index: 10;
 }
 
 .btn--no {
   background-color: #f03e3e;
-  position: relative; /* Empieza quieto, luego JS lo hace absolute */
-  transition: top 0.2s ease, left 0.2s ease; /* Movimiento fluido */
+  position: relative; 
+  transition: top 0.3s ease, left 0.3s ease; /* Movimiento suave */
 }
 
 .hidden {
   display: none;
 }
 
-/* Ajuste para PC: Aumenta un poco la fuente en pantallas grandes */
+/* Ajustes para PC */
 @media (min-width: 768px) {
-  .title {
-    font-size: 4rem;
-  }
-  .btn {
-    font-size: 2.4rem;
-    padding: 2rem 4rem;
-  }
+  .title { font-size: 4rem; }
+  .btn { font-size: 2.4rem; padding: 2rem 4rem; }
 }

@@ -9,12 +9,11 @@ html {
 }
 
 body {
-  background-color: #fff0f6; /* Rosa suave */
+  background-color: #fff0f6;
   font-family: "Protest Riot", sans-serif;
-  overflow: hidden; /* IMPORTANTE: Evita scroll cuando el botón se mueve */
+  overflow: hidden; /* IMPORTANTE: Para que no salgan barras de scroll cuando el botón sea gigante */
   height: 100vh;
   width: 100vw;
-  position: relative;
 }
 
 .container {
@@ -40,7 +39,6 @@ body {
 .text-box {
   margin-bottom: 2rem;
   text-align: center;
-  z-index: 5;
 }
 
 .title {
@@ -56,43 +54,36 @@ body {
   justify-content: center;
   gap: 1.5rem;
   width: 100%;
-  position: relative;
-  z-index: 10;
 }
 
 .btn {
   padding: 1.5rem 3rem;
   border: none;
-  border-radius: 50px;
+  border-radius: 10px;
   color: white;
   font-size: 2rem;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: all 0.3s ease; /* Crecimiento suave */
   box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-  
-  /* Evita selección de texto en celular */
-  user-select: none; 
-  -webkit-tap-highlight-color: transparent;
 }
 
 .btn--yes {
   background-color: #40c057;
-  z-index: 50;
+  /* El z-index 9999 asegura que tape TODO cuando sea gigante */
+  z-index: 9999; 
+  position: relative;
 }
 
 .btn--no {
   background-color: #f03e3e;
-  position: relative; 
-  transition: top 0.3s ease, left 0.3s ease; /* Movimiento fluido */
-  z-index: 100; /* Asegura que siempre esté visible */
+  z-index: 1;
 }
 
 .hidden {
   display: none;
 }
 
-/* Ajustes para PC */
 @media (min-width: 768px) {
   .title { font-size: 4rem; }
   .btn { font-size: 2.4rem; padding: 2rem 4rem; }

@@ -6,28 +6,38 @@ const yesButton = document.querySelector(".btn--yes");
 const noButton = document.querySelector(".btn--no");
 const catImg = document.querySelector(".cat-img");
 
-// --- TUS IMÁGENES ---
+// TUS IMAGENES (Del link 1 al 6)
+// Se irán mostrando en orden cuando el botón se escape
 const images = [
-  "https://imgur.com/TL3lwbV", // 1
-  "https://imgur.com/iUgN9E3", // 2
-  "https://imgur.com/mN3OkTV", // 3
-  "https://imgur.com/aZ3zWBk", // 5
-  "https://imgur.com/VukKvyM"  // 6
+  "https://imgur.com/a/GujcD78#TL3lwbV",
+  "https://imgur.com/a/GujcD78#iUgN9E3",
+  "https://imgur.com/a/GujcD78#mN3OkTV",
+  "https://imgur.com/a/GujcD78#aZ3zWBk",
+  "https://imgur.com/a/GujcD78#VukKvyM",
+  "https://imgur.com/a/GujcD78#BSkVGLM"
 ];
 
-// La imagen final (el SÍ):
-const finalImage = "https://imgur.com/TrvihNT";
+// TU IMAGEN FINAL (Link 7)
+// Esta aparece solo cuando logre darle al SÍ
+const finalImage = "https://imgur.com/a/GujcD78#TrvihNT";
 
 let noCount = 0;
 
 yesButton.addEventListener("click", handleYesClick);
 
-// Lógica para que el botón se escape (Mouse y Táctil)
+// --- LÓGICA DEL BOTÓN ESCAPISTA ---
+
+// 1. PC: Mouse pasa por encima
 noButton.addEventListener("mouseover", moverBoton);
+
+// 2. CELULAR: Dedo toca la pantalla (touchstart)
+// Usamos touchstart porque es más rápido que el click en móviles
 noButton.addEventListener("touchstart", function (e) {
-  e.preventDefault();
+  e.preventDefault(); 
   moverBoton();
 });
+
+// 3. Click (por seguridad)
 noButton.addEventListener("click", function (e) {
   e.preventDefault();
   moverBoton();
@@ -36,20 +46,22 @@ noButton.addEventListener("click", function (e) {
 function moverBoton() {
   noCount++;
   
-  // 1. Cambiar imagen (bucle infinito)
+  // A. Cambiar imagen
+  // Usa el operador % para volver a empezar si se acaban las fotos
   const imageIndex = noCount % images.length;
   catImg.src = images[imageIndex];
   
-  // 2. Cambiar texto
+  // B. Cambiar texto del botón
   updateNoButtonText();
   
-  // 3. Mover botón a posición random
+  // C. Mover el botón a una posición aleatoria
   const windowWidth = window.innerWidth;
   const windowHeight = window.innerHeight;
   const btnWidth = noButton.offsetWidth;
   const btnHeight = noButton.offsetHeight;
 
-  // Calculamos los límites para que no se salga de la pantalla
+  // Calculamos límites para que NO se salga de la pantalla
+  // Restamos el tamaño del botón y un margen de 20px
   const maxLeft = windowWidth - btnWidth - 20; 
   const maxTop = windowHeight - btnHeight - 20;
 
@@ -57,6 +69,7 @@ function moverBoton() {
   const randomY = Math.random() * maxTop;
 
   noButton.style.position = "absolute";
+  // Math.max asegura que no se vaya muy al borde izquierdo/superior
   noButton.style.left = `${Math.max(10, randomX)}px`;
   noButton.style.top = `${Math.max(10, randomY)}px`;
 }
@@ -64,7 +77,9 @@ function moverBoton() {
 function handleYesClick() {
   titleElement.innerHTML = "¡Siiuuu! Prometo que esta vez sale de 10 ❤️";
   buttonsContainer.classList.add("hidden");
-  catImg.src = finalImage; // Muestra la foto final
+  
+  // Muestra la foto final
+  catImg.src = finalImage;
 }
 
 function generateMessage(noCount) {

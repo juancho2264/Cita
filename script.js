@@ -8,16 +8,15 @@ const catImg = document.querySelector(".cat-img");
 
 // --- TUS IMÁGENES ---
 const images = [
-  "https://i.imgur.com/TL3lwbV.jpeg", // 1
-  "https://i.imgur.com/iUgN9E3.jpeg", // 2
-  "https://i.imgur.com/mN3OkTV.jpeg", // 3
-  "https://i.imgur.com/aZ3zWBk.jpeg", // 4
-  "https://i.imgur.com/VukKvyM.jpeg", // 5
-  "https://i.imgur.com/BSkVGLM.jpeg"  // 6
+  "https://imgur.com/TL3lwbV", // 1
+  "https://imgur.com/iUgN9E3", // 2
+  "https://imgur.com/mN3OkTV", // 3
+  "https://imgur.com/aZ3zWBk", // 5
+  "https://imgur.com/VukKvyM"  // 6
 ];
 
 // La imagen final (el SÍ):
-const finalImage = "https://i.imgur.com/TrvihNT.jpeg";
+const finalImage = "https://imgur.com/TrvihNT";
 
 let noCount = 0;
 

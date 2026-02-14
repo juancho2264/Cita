@@ -1,0 +1,100 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%; /* Truco para que 1rem = 10px aprox */
+}
+
+body {
+  background-color: #fff0f6;
+  font-family: "Protest Riot", sans-serif;
+  overflow: hidden; /* IMPORTANTE: Bloquea el scroll para que el botón no agrande la página */
+  height: 100vh;
+  width: 100vw;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+}
+
+.cat-img {
+  width: 80%; /* Ocupa el 80% del ancho en celulares */
+  max-width: 350px; /* Pero en PC no pasa de 350px */
+  height: auto;
+  object-fit: cover;
+  margin-bottom: 2rem;
+  border-radius: 10px; /* Un detallito estético */
+}
+
+.text-box {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.title {
+  font-size: 3rem;
+  color: #f53699;
+  line-height: 1.2;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+  min-height: 60px; /* Reserva espacio para que no salte todo cuando el NO se vaya */
+}
+
+.btn {
+  padding: 1.5rem 3rem;
+  border: none;
+  border-radius: 50px; /* Botones más redondos y modernos */
+  color: white;
+  font-size: 2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  
+  /* Evita selección de texto en móviles */
+  user-select: none; 
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn--yes {
+  background-color: #40c057;
+  z-index: 10;
+}
+
+.btn--no {
+  background-color: #f03e3e;
+  position: relative; /* Empieza quieto, luego JS lo hace absolute */
+  transition: top 0.2s ease, left 0.2s ease; /* Movimiento fluido */
+}
+
+.hidden {
+  display: none;
+}
+
+/* Ajuste para PC: Aumenta un poco la fuente en pantallas grandes */
+@media (min-width: 768px) {
+  .title {
+    font-size: 4rem;
+  }
+  .btn {
+    font-size: 2.4rem;
+    padding: 2rem 4rem;
+  }
+}
